@@ -1,32 +1,33 @@
-# FinTechM2
-Berkel2y FinTech Bootcamp Module 2 Challenge
+# Project Title
 
-## Submitted by Martin Smith
-## Due date: 2022-04-10
+Just after the title, introduce your project by describing attractively what the project is about and what is the main problem that inspires you to create this project or what is the main contribution for the potential user of your project.
 
-# Running the module file
-# TODO: confirm and update as needed
-The file for this challenge is located in the **src** folder.
-To run from the root of this repo
-   * start the dev VM
-   * run python src/app.py
-   * deactivate VM when done 
-```
-conda activate dev
-python src/app.py
-conda deactivate
-``` 
+---
 
-# Sample execution output
-# TODO: if it makes sense, copy output to here
-```
+## Technologies
 
+Describe the technologies required to use your project such as programming languages, libraries, frameworks, and operating systems. Be sure to include the specific versions of any critical dependencies that you have used in the stable version of your project.
 
-```
+---
 
-# Grading Rubric
-| Section    |      Element                                                 |  Pts  |  Done |
-|------------|--------------------------------------------------------------|:-----:|:-----:|
-| Section    | Element description                                          |       |       |
-| Section    | Element description                                          |       |       |
-| Section    | Element description                                          |       |       |
+## Installation Guide
+
+In this section, you should include detailed installation notes containing code blocks and screenshots.
+
+---
+
+## Usage
+
+This section should include screenshots, code blocks, or animations explaining how to use your project.
+
+---
+
+## Contributors
+
+In this section, list all the people who contribute to this project. You might want recruiters or potential collaborators to reach you, so include your contact email and, optionally, your LinkedIn or Twitter profile.
+
+---
+
+## License
+
+When you share a project on a repository, especially a public one, it's important to choose the right license to specify what others can and can't with your source code and files. Use this section to include the license you want to use.
