@@ -33,7 +33,7 @@ This section should include screenshots, code blocks, or animations explaining h
 ## Contributors
 
 *  **Martin Smith** | *email:* msmith92663@gmail.com | 
-[![in](images/LI-In-Bug.png)](https://www.linkedin.com/in/smithmartinp/)
+[<img src="images/LI-In-Bug.png" alt="in" width="20"/>](https://www.linkedin.com/in/smithmartinp/)
 
 
 ---
