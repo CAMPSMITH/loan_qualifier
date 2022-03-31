@@ -1,6 +1,6 @@
 # loan_qualifier
 
-**loan_qualifier** is an application that facilitates the loan qualification process by guiding users, through interactive prompts, to save qualifying loans to a CSV file. 
+**loan_qualifier** is an application that enables users to share qualifying loans using a spreadsheet by guiding users, through interactive prompts, to save qualifying loans to a CSV file. 
 
 ---
 
