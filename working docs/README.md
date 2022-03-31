@@ -27,8 +27,8 @@ conda deactivate
 # Grading Rubric
 | Section    |      Element                                                 |  Pts  |  Done |
 |------------|--------------------------------------------------------------|:-----:|:-----:| 
-| Initialization and Design | Create repo initialized with starter code |   5   |       |
-| Initialization and Design | Create README file                        |   5   |       |
+| Initialization and Design | Create repo initialized with starter code |   5   |   x   |
+| Initialization and Design | Create README file                        |   5   |   x   |
 | Initialization and Design | Business requirements translated into code |  10   |       |
 | Initialization and Design | Code organized and integrated into the existing project |  10   |       |
 | Development and Deployment | Save dialog added to existing CLI |  10   |       |
