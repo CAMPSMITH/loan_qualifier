@@ -11,11 +11,14 @@ import fire
 import questionary
 from pathlib import Path
 
-from qualifier.utils.fileio import load_csv
+from qualifier.utils.fileio import (
+    load_csv,
+    save_csv
+)
 
 from qualifier.utils.calculators import (
     calculate_monthly_debt_ratio,
-    calculate_loan_to_value_ratio,
+    calculate_loan_to_value_ratio
 )
 
 from qualifier.filters.max_loan_size import filter_max_loan_size
@@ -102,6 +105,9 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
     return bank_data_filtered
 
 
+# define CSV headers
+header = ['Lender','Max Loan Amount','Max LTV','Max DTI','Min Credit Score','Interest Rate']
+
 def save_qualifying_loans(qualifying_loans):
     """Saves the qualifying loans to a CSV file.
 
@@ -159,11 +165,9 @@ def save_qualifying_loans(qualifying_loans):
             print(f"`{csv_path}` is not a valid path.")
             csv_path = None    # this will cause the question to be asked again
         # a valid file path ending in .csv will break the loop
-    
-    print(f"Saving qualifying loans to {csv_path}.")
-
-    
-
+    csv_path = Path(csv_path)
+    save_csv(csv_path,header,qualifying_loans)
+    print(f"Saved qualifying loans to {csv_path}.  GoodBye!")
 
 def run():
     """The main function for running the script."""
