@@ -104,6 +104,49 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
 
     return bank_data_filtered
 
+# define allowed answers
+allowed_answers = ['yes','no']
+def get_save_to_file():
+    """Prompt dialog to get the user's intent to save results to file.
+
+    Returns:
+        Returns yes or no, yes indicating that the user wants to save results to file.
+    """    
+    response = None
+    # loop until user provides a valid response
+    while response == None:
+        # prompt for intent to save
+        response = questionary.text("Do you want to save qualifying loans to a CSV file (yes or no)?:").ask()
+        # normalize the data by converting to lower case
+        response = response.lower()
+        # check if answer was valid
+        if response not in allowed_answers:
+            print(f"{response} is not a valid answer.  Only yes or no are allowed.")
+            response = None   # this will cause the question to be asked again
+        # a valid answer of yes or no will break the loop
+    return response
+
+# define csv suffix and suffix size
+suffix = '.csv'
+suffix_size = len(suffix)
+def get_save_path():
+    """Prompt dialog to get path to save the file to.
+
+    Returns:
+        Returns Path for csv file
+    """    
+    response = None
+    # loop until user provides a valid response
+    while response == None:
+        # prompt the user for the file path
+        response = questionary.text(f"Please enter the file path to save qualifying loans to (must end in `{suffix}`):").ask()
+        # confirm that the file path is acceptable
+        if response == None or len(response) <= suffix_size or response[-suffix_size:] != suffix:
+            print(f"`{response}` is not a valid path.")
+            response = None    # this will cause the question to be asked again
+        # a valid file path ending in .csv will break the loop
+    response = Path(response)
+    return response
 
 # define CSV headers
 header = ['Lender','Max Loan Amount','Max LTV','Max DTI','Min Credit Score','Interest Rate']
@@ -135,37 +178,17 @@ def save_qualifying_loans(qualifying_loans):
         return
 
     # there are qualifying loans, check if user wants to exit without saving to file
-    save_to_file = None
-    # define allowed answers
-    allowed_answers = ['yes','no']
-    while save_to_file == None:
-        # prompt for intent to save
-        save_to_file = questionary.text("Do you want to save qualifying loans to a CSV file (yes or no)?:").ask()
-        # normalize the data by 
-        save_to_file = save_to_file.lower()
-        # check if answer was valid
-        if save_to_file not in allowed_answers:
-            print(f"{save_to_file} is not a valid answer.  Only yes or no are allowed.")
-            save_to_file = None   # this will cause the question to be asked again
-        # a valid answer of yes or no will break the loop
+    save_to_file = get_save_to_file()
 
     if save_to_file != 'yes':
         print("You have opted not to save qualifying loans to file.  GoodBye!")
         return
 
     print("You have selected to save qualifying loans to file.")
-    csv_path = None
-    suffix = '.csv'
-    suffix_size = len(suffix)
-    while csv_path == None:
-        # prompt the user for the file path
-        csv_path = questionary.text(f"Please enter the file path to save qualifying loans to (must end in `{suffix}`):").ask()
-        # confirm that the file path is acceptable
-        if csv_path == None or len(csv_path) <= suffix_size or csv_path[-suffix_size:] != suffix:
-            print(f"`{csv_path}` is not a valid path.")
-            csv_path = None    # this will cause the question to be asked again
-        # a valid file path ending in .csv will break the loop
-    csv_path = Path(csv_path)
+
+    # get path to save qualifying loans to
+    csv_path = get_save_path()
+
     save_csv(csv_path,header,qualifying_loans)
     print(f"Saved qualifying loans to {csv_path}.  GoodBye!")
 
