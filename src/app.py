@@ -104,7 +104,6 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
 
     return bank_data_filtered
 
-# define allowed answers
 def get_save_to_file():
     """Prompt dialog to get the user's intent to save results to file.
 
@@ -113,7 +112,8 @@ def get_save_to_file():
     """    
     response = questionary.select(
         "Do you want to save qualifying loans to a CSV file?",
-        choices=["yes","no"]).ask()
+        choices=["yes","no"]
+        ).ask()
     return response
 
 # define csv suffix and suffix size
@@ -125,18 +125,26 @@ def get_save_path():
     Returns:
         Returns Path for csv file
     """    
-    response = None
+    path = None
     # loop until user provides a valid response
-    while response == None:
+    while validate_path(path):
         # prompt the user for the file path
-        response = questionary.text(f"Please enter the file path to save qualifying loans to (must end in `{suffix}`):").ask()
-        # confirm that the file path is acceptable
-        if response == None or len(response) <= suffix_size or response[-suffix_size:] != suffix:
-            print(f"`{response}` is not a valid path.")
-            response = None    # this will cause the question to be asked again
+        path = questionary.text(f"Please enter the file path to save qualifying loans to (must end in `{suffix}`):").ask()
         # a valid file path ending in .csv will break the loop
-    response = Path(response)
-    return response
+    return Path(path)
+
+def validate_path(path):
+    """Validate that the provided path is acceptable.
+
+    Returns:
+        Returns True if path is valid, False otherwise
+    """   
+    # confirm that the file path is acceptable
+    if path == None or len(path) <= suffix_size or path[-suffix_size:] != suffix:
+        print(f"`{path}` is not a valid path.")
+        return False
+    
+    return True
 
 # define CSV headers
 header = ['Lender','Max Loan Amount','Max LTV','Max DTI','Min Credit Score','Interest Rate']
@@ -146,18 +154,37 @@ def save_qualifying_loans(qualifying_loans):
 
     Design / Requirements:
         1 - the user interface for this tool is a CLI which prompts the user for required input
+            use questionary to get required info from user
+            prompt for intent to save to file
+            prompt for path to save to
 
         2 - When there are no qualifying loans, the tool should notify the user and exit.
+            if len(loans) < 1 or None, print no loans and exit
 
         3 - If there are qualifying loans, the tool offer the user to opt out of saving the file.
-               If the user opts out of saving the file, the program shoudl quit
+               If the user opts out of saving the file, the program should quit
+               if save_to_file == no, exit
 
         4 - If there are qualifying loans and if the user wants to save them to a file, the tool
             should prompt for a file path to save the file. The file name should have a valid format.  
             It sould be longer than `.csv` and it should end in `.csv`.
             The program will prompt the using repeatedly until a valid anser is provided. 
+            if len(loans) > 0
+               if save_to_file == yes
+                  save_file = None
+                  while !valid(save_file)
+                     save_file=get_save_file()
+                  save(loans,save_file)
+                  exit
 
         5 - When saving qualifying loans to a file, the tool should save the results as a CSV file. 
+            use csvwriter to save file as CSV
+            open file for write
+               create csvwriter
+               csvwriter.write(headers)
+               for each loan
+                  csvwriter.write(loan)
+            return
               
 
     Args:

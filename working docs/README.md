@@ -1,6 +1,6 @@
 # TODOs
 * confirm variable names and function names 
-* confirm DRY
+
 
 # Grading Rubric
 | Section    |      Element                                                 |  Pts  |  Done |
