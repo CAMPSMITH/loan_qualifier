@@ -29,11 +29,11 @@ def load_csv(csvpath):
             data.append(row)
     return data
 
-def save_csv(csvpath, header, records):
+def save_csv(csv_path, header, records):
     """Saves the data to the specified CSV path
 
     Args:
-        csvpath (Path): The csv file path.
+        csv_path (Path): The csv file path.
         header  (list): a list of strings providing the field names for the CSV file
         records (list): a list of records to save
 
@@ -41,12 +41,12 @@ def save_csv(csvpath, header, records):
         
 
     """
-    with open(csvpath, "w") as csvfile:
-        csvwriter = csv.writer(csvfile, delimiter=",")
+    with open(csv_path, "w") as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=",")
 
-        csvwriter.writerow(header)
+        csv_writer.writerow(header)
 
         for record in records:
-            csvwriter.writerow(record)
+            csv_writer.writerow(record)
 
     return 

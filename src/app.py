@@ -126,14 +126,17 @@ def get_save_path():
         Returns Path for csv file
     """    
     path = None
+    path_is_valid=False
     # loop until user provides a valid response
-    while validate_path(path):
+    while not path_is_valid:
         # prompt the user for the file path
         path = questionary.text(f"Please enter the file path to save qualifying loans to (must end in `{suffix}`):").ask()
+        path_is_valid = is_valid_path(path)
         # a valid file path ending in .csv will break the loop
+
     return Path(path)
 
-def validate_path(path):
+def is_valid_path(path):
     """Validate that the provided path is acceptable.
 
     Returns:
@@ -147,7 +150,7 @@ def validate_path(path):
     return True
 
 # define CSV headers
-header = ['Lender','Max Loan Amount','Max LTV','Max DTI','Min Credit Score','Interest Rate']
+headers = ['Lender','Max Loan Amount','Max LTV','Max DTI','Min Credit Score','Interest Rate']
 
 def save_qualifying_loans(qualifying_loans):
     """Saves the qualifying loans to a CSV file.
@@ -209,8 +212,7 @@ def save_qualifying_loans(qualifying_loans):
 
     # get path to save qualifying loans to
     csv_path = get_save_path()
-
-    save_csv(csv_path,header,qualifying_loans)
+    save_csv(csv_path,headers,qualifying_loans)
     print(f"Saved qualifying loans to {csv_path}.  GoodBye!")
 
 def run():
