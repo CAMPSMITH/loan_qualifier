@@ -39,18 +39,19 @@ To run the program, assuming that you have
 * created a virtual environment
 * installed dependencies
 * navigated to the root of the repo
-simply execute the following command:
+
+Execute the following command:
 ```
 python src/app.py
 ```
-Answer the prompt as appropriate for your loan parameters.  The following screenshot demonstrate a user session where the user requests to save the quaifying loans to a file.
+Answer the prompts as appropriate for your loan parameters.  The following screenshot demonstrates a user session where the user requests to save the qualzifying loans to a file.
 ![loanqualifier_saveloans.png](images/loanqualifier_saveloans.png)
-**note**
- 1. the rate sheet must be a valid path to a csv containing the rate sheet in the appropriate format
- 1. when responding to the question `Do you want to save qualifying loans to a CSV file?`, use the up and down arrow keys to select the desired response.
- 1. the user does not have to save qualifying loans to file. In cases where the selected option is to not save qualifying loans to file, the program will simply terminate.
- 1. in cases where there are no qualifying loans meeting the selected criteria, the program will notify the user and terminute, see ![loanqualifier_noloans.png](images/loanqualifier_noloans.png)
- 1. when saving qualifying loans to file, the provided path must end in .csv or it will not be accepted.  The user will be reprompted until a valid path is provided. see ![images/loanqualifier_badsave.png](images/loanqualifier_badsave.png)
+#### **notes**
+ 1. The rate sheet must be a valid path to a csv containing the rate sheet in the appropriate format
+ 1. When responding to the question `Do you want to save qualifying loans to a CSV file?`, use the up and down arrow keys to select the desired response.
+ 1. The user does not have to save qualifying loans to file. In cases where the selected option is to not save qualifying loans to file, the program will simply terminate.
+ 1. In cases where there are no qualifying loans meeting the selected criteria, the program will notify the user and terminate, see ![loanqualifier_noloans.png](images/loanqualifier_noloans.png)
+ 1. When saving qualifying loans to file, the provided path must end in .csv or it will not be accepted.  The user will be re-prompted until a valid path is provided. see ![images/loanqualifier_badsave.png](images/loanqualifier_badsave.png)
 
 
 ---
