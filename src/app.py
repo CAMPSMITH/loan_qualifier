@@ -105,25 +105,15 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
     return bank_data_filtered
 
 # define allowed answers
-allowed_answers = ['yes','no']
 def get_save_to_file():
     """Prompt dialog to get the user's intent to save results to file.
 
     Returns:
         Returns yes or no, yes indicating that the user wants to save results to file.
     """    
-    response = None
-    # loop until user provides a valid response
-    while response == None:
-        # prompt for intent to save
-        response = questionary.text("Do you want to save qualifying loans to a CSV file (yes or no)?:").ask()
-        # normalize the data by converting to lower case
-        response = response.lower()
-        # check if answer was valid
-        if response not in allowed_answers:
-            print(f"{response} is not a valid answer.  Only yes or no are allowed.")
-            response = None   # this will cause the question to be asked again
-        # a valid answer of yes or no will break the loop
+    response = questionary.select(
+        "Do you want to save qualifying loans to a CSV file?",
+        choices=["yes","no"]).ask()
     return response
 
 # define csv suffix and suffix size
@@ -154,17 +144,21 @@ header = ['Lender','Max Loan Amount','Max LTV','Max DTI','Min Credit Score','Int
 def save_qualifying_loans(qualifying_loans):
     """Saves the qualifying loans to a CSV file.
 
-    Requirements:
+    Design / Requirements:
         1 - the user interface for this tool is a CLI which prompts the user for required input
 
         2 - When there are no qualifying loans, the tool should notify the user and exit.
 
         3 - If there are qualifying loans, the tool offer the user to opt out of saving the file.
+               If the user opts out of saving the file, the program shoudl quit
 
         4 - If there are qualifying loans and if the user wants to save them to a file, the tool
-            should prompt for a file path to save the file.
+            should prompt for a file path to save the file. The file name should have a valid format.  
+            It sould be longer than `.csv` and it should end in `.csv`.
+            The program will prompt the using repeatedly until a valid anser is provided. 
 
-        5 - When saving qualifying loans to a file, the tool should save the results as a CSV file.    
+        5 - When saving qualifying loans to a file, the tool should save the results as a CSV file. 
+              
 
     Args:
         qualifying_loans (list of lists): The qualifying bank loans.
