@@ -14,16 +14,6 @@ Technologies used in this project:
 
 ---
 
-## Installation Guide
-
-Install the dependencies required to run the loan qualifier application:
-```
-pip install fire
-pip install questionary
-```
-
----
-
 ## Usage
 
 ### Installation
