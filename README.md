@@ -44,7 +44,7 @@ Execute the following command:
 ```
 python src/app.py
 ```
-Answer the prompts as appropriate for your loan parameters.  The following screenshot demonstrates a user session where the user requests to save the qualzifying loans to a file.
+Answer the prompts as appropriate for your loan parameters.  The following screenshot demonstrates a user session where the user requests to save the qualifying loans to a file.
 ![loanqualifier_saveloans.png](images/loanqualifier_saveloans.png)
 #### **notes**
  1. The rate sheet must be a valid path to a csv containing the rate sheet in the appropriate format
