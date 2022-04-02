@@ -24,7 +24,7 @@ To install the program in your environment, first clone this repo into a specifi
 ```
 
 ### Install Dependencies
-The required dependencies for this program can easily be installed using the *requirements.txt* file within the repo.  It is recommended that you use a virtual environment to avoid conflicts with other programs in your environment.  Assuming that the above command was just executed as stated, the path to the repo should be *loan_qualifier*.  Adjust as needed for your environment.  It is recommended that you use a virtual environment
+The required dependencies for this program can easily be installed using the *requirements.txt* file within the repo.  It is recommended that you use a virtual environment to avoid conflicts with other programs in your environment.  Assuming that the above command was just executed as stated, the path to the repo should be *loan_qualifier*.  Adjust as needed for your environment.  
 ```
 % cd loan_qualifier
 % conda create -n <name of your virtual environment> python=3.7 anaconda
